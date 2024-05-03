@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class ConnectionManager {
     public static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    public static final String URL = "jdbc:mysql:localhost:3306/2304_marketplace";
+    public static final String URL = "jdbc:mysql://localhost:3306/2304_marketplaces";
     public static final String USER = "root";
     public static final String PASSWORD = "";
 

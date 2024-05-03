@@ -1,7 +1,7 @@
-package by.itclass.controllers;
+package by.itclass.controllers.order.abstraction;
 
 import by.itclass.model.entities.User;
-import by.itclass.model.services.UserService;
+import by.itclass.model.services.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,16 +13,11 @@ import java.io.IOException;
 import static by.itclass.constants.JspConstants.MESSAGE_ATTR;
 
 public abstract class AbstractController extends HttpServlet {
-    protected UserService userService;
 
-    @Override
-    public void init() throws ServletException {
-        userService = UserService.getInstance();
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp);
+        doPost(req, resp);
     }
 
     protected void forward(HttpServletRequest req, HttpServletResponse resp,
@@ -34,5 +29,9 @@ public abstract class AbstractController extends HttpServlet {
                            String url, String message) throws ServletException, IOException {
         req.setAttribute(MESSAGE_ATTR, message);
         forward(req, resp, url);
+    }
+
+    protected void redirect(HttpServletResponse resp, String url) throws IOException {
+        resp.sendRedirect(getServletContext().getContextPath() + url);
     }
 }
